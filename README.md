@@ -1,4 +1,4 @@
-JNFacebookDownloadDemo
+JNFacebookDownload
 ======================
 
 A Dead simple facebook data downloader
