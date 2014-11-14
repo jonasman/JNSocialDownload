@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jP2-0d-KwF">
+                                <rect key="frame" x="10" y="45" width="69" height="30"/>
+                                <state key="normal" title="Basic Info">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="donwloadBasicInfo:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="FlG-sg-UcR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdb-4d-lpZ">
+                                <rect key="frame" x="278" y="45" width="44" height="30"/>
+                                <state key="normal" title="Avatar">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="downloadAvatar:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5IU-3d-jpu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1TH-Sc-0Au">
+                                <rect key="frame" x="534" y="45" width="41" height="30"/>
+                                <state key="normal" title="Cover">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="downloadCover:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="h9s-NF-kyX"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Information" translatesAutoresizingMaskIntoConstraints="NO" id="n5c-3Z-OOq">
+                                <rect key="frame" x="10" y="83" width="565" height="315"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="315" id="i9V-XX-5qe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qah-yG-yox">
+                                <rect key="frame" x="200" y="406" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="EBR-Na-u8b"/>
+                                    <constraint firstAttribute="height" constant="200" id="ulz-xM-zq2"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="qah-yG-yox" secondAttribute="centerX" id="6vZ-TR-Mq1"/>
+                            <constraint firstAttribute="trailing" secondItem="1TH-Sc-0Au" secondAttribute="trailing" constant="25" id="Jmh-RO-JjM"/>
+                            <constraint firstItem="fdb-4d-lpZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jP2-0d-KwF" secondAttribute="trailing" constant="20" id="LiC-J5-zof"/>
+                            <constraint firstItem="jP2-0d-KwF" firstAttribute="leading" secondItem="n5c-3Z-OOq" secondAttribute="leading" id="MgE-6O-oYJ"/>
+                            <constraint firstItem="1TH-Sc-0Au" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="25" id="Qnn-iN-eud"/>
+                            <constraint firstItem="jP2-0d-KwF" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="25" id="ZHv-SN-xRu"/>
+                            <constraint firstItem="1TH-Sc-0Au" firstAttribute="trailing" secondItem="n5c-3Z-OOq" secondAttribute="trailing" id="asU-kW-mOw"/>
+                            <constraint firstItem="qah-yG-yox" firstAttribute="top" secondItem="n5c-3Z-OOq" secondAttribute="bottom" constant="8" id="iuJ-th-nmS"/>
+                            <constraint firstAttribute="centerX" secondItem="fdb-4d-lpZ" secondAttribute="centerX" id="kst-No-mHx"/>
+                            <constraint firstItem="fdb-4d-lpZ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="25" id="lIM-n4-f4Q"/>
+                            <constraint firstItem="n5c-3Z-OOq" firstAttribute="top" secondItem="jP2-0d-KwF" secondAttribute="bottom" constant="8" id="nNj-pp-So1"/>
+                            <constraint firstItem="jP2-0d-KwF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="wWm-wA-VSm"/>
+                            <constraint firstItem="1TH-Sc-0Au" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fdb-4d-lpZ" secondAttribute="trailing" constant="25" id="wxY-CF-gNa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="qah-yG-yox" id="aag-dd-NYd"/>
+                        <outlet property="textView" destination="n5c-3Z-OOq" id="0TL-PA-pSl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
