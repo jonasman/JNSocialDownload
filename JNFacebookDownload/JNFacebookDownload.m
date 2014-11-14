@@ -18,20 +18,23 @@ typedef NS_ENUM(NSInteger, FacebookDownloadType) {
 };
 
 
-NSInteger JNFacebookDownloadNoAPPID = 1;
-NSInteger FacebookDownloadNoPermissions = 2;
-NSInteger FacebookDownloadNoAccount = 3;
+const NSInteger JNFacebookDownloadNoAPPID = 1;
+const NSInteger JNFacebookDownloadNoPermissions = 2;
+const NSInteger JNFacebookDownloadNoAccount = 3;
+
+static NSString * const JNimageCompletion = @"JNimageCompletion";
+static NSString * const JNinfoCompletion = @"JNinfoCompletion";
 
 
 
 @interface JNFacebookDownload ()
 
-@property (nonatomic, copy) FacebookDownloadImageBlock avatarCompletion;
-@property (nonatomic, copy) FacebookDownloadImageBlock coverCompletion;
-@property (nonatomic, copy) FacebookDownloadUserInfoBlock informationCompletion;
-
-
 @property (nonatomic) ACAccountStore * fbStore;
+
+@property (nonatomic) NSMutableDictionary * requests;
+@property (nonatomic) NSInteger lastRequestID;
+
+
 
 @end
 
@@ -39,36 +42,83 @@ NSInteger FacebookDownloadNoAccount = 3;
 @implementation JNFacebookDownload
 
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _requests = [NSMutableDictionary new];
+        _lastRequestID = 0;
+    }
+    return self;
+}
+
+- (instancetype)initWithAppID:(NSString *)appid
+{
+    self = [self init];
+    if (self) {
+        _appID = appid;
+    }
+    return self;
+}
+
+- (ACAccountStore *)fbStore
+{
+    if (!_fbStore)
+        _fbStore = [[ACAccountStore alloc]init];
+    
+    return _fbStore;
+}
+
+
+#pragma mark Public API
 
 - (void)downloadAvatar:(FacebookDownloadImageBlock)completion
 {
-    self.avatarCompletion = completion;
-    [self selectFacebookIOS:FacebookDownloadTypeAvatar];
+    
+    NSNumber * requestID = @(self.lastRequestID++);
+    
+    self.requests[requestID] =
+    @{
+      JNimageCompletion:(completion?completion:(^(UIImage *image, NSError *error) {}))
+      };
+    
+    
+    [self selectFacebookIOS:FacebookDownloadTypeAvatar requestID:requestID];
 }
 - (void)downloadCover:(FacebookDownloadImageBlock)completion
 {
-    self.coverCompletion = completion;
-    [self selectFacebookIOS:FacebookDownloadTypeCover];
+    NSNumber * requestID = @(self.lastRequestID++);
+    
+    self.requests[requestID] =
+    @{
+      JNimageCompletion:(completion?completion:(^(UIImage *image, NSError *error) {}))
+      };
+    
+    [self selectFacebookIOS:FacebookDownloadTypeCover requestID:requestID];
 }
 - (void)downloadInformation:(FacebookDownloadUserInfoBlock)completion
 {
-    self.informationCompletion = completion;
-    [self selectFacebookIOS:FacebookDownloadTypeInformation];
+    NSNumber * requestID = @(self.lastRequestID++);
+    
+    self.requests[requestID] =
+    @{
+      JNinfoCompletion:(completion?completion:(^(NSDictionary *userInfo, NSError *error) {}))
+      };
+    
+    [self selectFacebookIOS:FacebookDownloadTypeInformation requestID:requestID];
 }
 
-#pragma mark Facebook
 
-- (void)selectFacebookIOS:(FacebookDownloadType)downloadType
+
+
+#pragma mark Facebook Logic
+
+- (void)selectFacebookIOS:(FacebookDownloadType)downloadType requestID:(NSNumber *)requestID
 {
     // Facebook Logic:
     
     // Get ME
     // Get picture with my userID
-    
-    
-    if (!self.fbStore)
-        self.fbStore = [[ACAccountStore alloc]init];
-    ACAccountType * accountType = [self.fbStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
     
     NSString * facebookAPPID;
     
@@ -76,35 +126,58 @@ NSInteger FacebookDownloadNoAccount = 3;
         facebookAPPID = self.appID;
     else
         facebookAPPID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"FacebookAppID"];
+    
     if (!facebookAPPID)
     {
-        if (self.avatarCompletion)
-            self.avatarCompletion(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:JNFacebookDownloadNoAPPID userInfo:@{NSLocalizedDescriptionKey:@"No app ID configured"}]);
-        if (self.coverCompletion)
-            self.coverCompletion(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:JNFacebookDownloadNoAPPID userInfo:@{NSLocalizedDescriptionKey:@"No app ID configured"}]);
-        else if (self.informationCompletion)
-            self.informationCompletion(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:JNFacebookDownloadNoAPPID userInfo:@{NSLocalizedDescriptionKey:@"No app ID configured"}]);
-        
+        if (downloadType == FacebookDownloadTypeAvatar ||
+            downloadType == FacebookDownloadTypeCover){
+            
+            FacebookDownloadImageBlock block = self.requests[requestID][JNimageCompletion];
+            
+            block(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:JNFacebookDownloadNoAPPID userInfo:@{NSLocalizedDescriptionKey:@"No app ID configured"}]);
+            
+        }
+        else if (downloadType == FacebookDownloadTypeInformation)
+        {
+            FacebookDownloadUserInfoBlock block = self.requests[requestID][JNinfoCompletion];
+            
+            block(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:JNFacebookDownloadNoAPPID userInfo:@{NSLocalizedDescriptionKey:@"No app ID configured"}]);
+        }
         
         return;
     }
+    
+    
+    ACAccountType * accountType = [self.fbStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
     
     
     
     NSDictionary * facebookOptions = @{ACFacebookAppIdKey:facebookAPPID,
                                        ACFacebookPermissionsKey:@[@"user_birthday"]};
     
+    
+    
+    
     [self.fbStore requestAccessToAccountsWithType:accountType options:facebookOptions completion:^(BOOL granted, NSError *error) {
         
         if (error){
-            NSLog(@"Error: %@",error);
+            
          
-            if (self.avatarCompletion)
-                self.avatarCompletion(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:FacebookDownloadNoAccount userInfo:@{NSLocalizedDescriptionKey:@"No Facebook Account configured"}]);
-            if (self.coverCompletion)
-                self.coverCompletion(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:FacebookDownloadNoAccount userInfo:@{NSLocalizedDescriptionKey:@"No Facebook Account configured"}]);
-            else if (self.informationCompletion)
-                self.informationCompletion(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:FacebookDownloadNoAccount userInfo:@{NSLocalizedDescriptionKey:@"No Facebook Account configured"}]);
+            if (downloadType == FacebookDownloadTypeAvatar ||
+                downloadType == FacebookDownloadTypeCover){
+                
+                FacebookDownloadImageBlock block = self.requests[requestID][JNimageCompletion];
+                
+                block(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:JNFacebookDownloadNoAccount userInfo:@{NSLocalizedDescriptionKey:@"No Facebook Account configured"}]);
+                
+            }
+            else if (downloadType == FacebookDownloadTypeInformation)
+            {
+                FacebookDownloadUserInfoBlock block = self.requests[requestID][JNinfoCompletion];
+                
+                block(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:JNFacebookDownloadNoAccount userInfo:@{NSLocalizedDescriptionKey:@"No Facebook Account configured"}]);
+            }
+            
                 
             return ;
         }
@@ -112,17 +185,26 @@ NSInteger FacebookDownloadNoAccount = 3;
         if (granted)
         {
             
-            [self requestMe:downloadType];
+            [self requestMe:downloadType requestID:requestID];
             
         }
         else
-        {   
-            if (self.avatarCompletion)
-                self.avatarCompletion(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:FacebookDownloadNoPermissions userInfo:@{NSLocalizedDescriptionKey:@"Facebook permission not granted"}]);
-            else if (self.coverCompletion)
-                self.coverCompletion(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:FacebookDownloadNoPermissions userInfo:@{NSLocalizedDescriptionKey:@"Facebook permission not granted"}]);
-            else if (self.informationCompletion)
-                self.informationCompletion(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:FacebookDownloadNoPermissions userInfo:@{NSLocalizedDescriptionKey:@"Facebook permission not granted"}]);
+        {
+            
+            if (downloadType == FacebookDownloadTypeAvatar ||
+                downloadType == FacebookDownloadTypeCover){
+                
+                FacebookDownloadImageBlock block = self.requests[requestID][JNimageCompletion];
+                
+                block(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:JNFacebookDownloadNoPermissions userInfo:@{NSLocalizedDescriptionKey:@"Facebook permission not granted"}]);
+                
+            }
+            else if (downloadType == FacebookDownloadTypeInformation)
+            {
+                FacebookDownloadUserInfoBlock block = self.requests[requestID][JNinfoCompletion];
+                
+                block(nil,[NSError errorWithDomain:@"JNFacebookDownload" code:JNFacebookDownloadNoPermissions userInfo:@{NSLocalizedDescriptionKey:@"Facebook permission not granted"}]);
+            }
             
         }
         
@@ -131,7 +213,7 @@ NSInteger FacebookDownloadNoAccount = 3;
  
  }
 
-- (void)requestMe:(FacebookDownloadType)downloadType
+- (void)requestMe:(FacebookDownloadType)downloadType requestID:(NSNumber *)requestID
 {
     ACAccountType * accountType = [self.fbStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
     ACAccount * account = [[self.fbStore accountsWithAccountType:accountType] lastObject];
@@ -151,87 +233,22 @@ NSInteger FacebookDownloadNoAccount = 3;
         if (!error){
             NSDictionary * userData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
             
-            NSLog(@"%@", userData);
-            
             NSString * facebookID = userData[@"id"];
             
             
             if (downloadType == FacebookDownloadTypeAvatar)
             {
-                NSString * imageURL = [NSString stringWithFormat:@"https://graph.facebook.com/v2.1/%@/picture",facebookID];
-                
-                
-                SLRequest * request =
-                [SLRequest requestForServiceType:SLServiceTypeFacebook
-                                   requestMethod:SLRequestMethodGET
-                                             URL:[NSURL URLWithString:imageURL]
-                                      parameters:@{@"height":@"512",
-                                                   @"width":@"512"}];
-                
-                request.account = account;
-                [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                    
-                    
-                    if (responseData.length > 100)
-                    {
-                        UIImage * image = [UIImage imageWithData:responseData];
-                        
-                        if (self.avatarCompletion)
-                            self.avatarCompletion(image,nil);
-                    }
-                    
-                }];
-                
+                [self requestAvatarFromUser:facebookID requestID:requestID];
             }
             else if (downloadType == FacebookDownloadTypeCover)
             {
-                
-                NSString * coverURL = [NSString stringWithFormat:@"https://graph.facebook.com/v2.1/%@",facebookID];
-                
-                SLRequest * request =
-                [SLRequest requestForServiceType:SLServiceTypeFacebook
-                                   requestMethod:SLRequestMethodGET
-                                             URL:[NSURL URLWithString:coverURL]
-                                      parameters:@{@"fields":@"cover"}];
-                
-                request.account = account;
-                [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                    
-                    
-                    NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
-                    
-                    if (response)
-                    {
-                        NSDictionary * cover = response[@"cover"];
-                        if (cover){
-                            NSString * url = cover[@"source"];
-                            
-                            SLRequest * request3 =
-                            [SLRequest requestForServiceType:SLServiceTypeFacebook
-                                               requestMethod:SLRequestMethodGET
-                                                         URL:[NSURL URLWithString:url]
-                                                  parameters:nil];
-                            
-                            [request3 performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                                UIImage * image = [UIImage imageWithData:responseData];
-                                
-                                if (self.coverCompletion)
-                                    self.coverCompletion(image,nil);
-
-                                
-                            }];
-                            
-                        }
-                        
-                        
-                    }
-                }];
-                
+                [self requestCoverFromUser:facebookID requestID:requestID];
             }
             else if (downloadType == FacebookDownloadTypeInformation)
             {
-                if (self.informationCompletion)
-                    self.informationCompletion(userData,nil);
+                FacebookDownloadUserInfoBlock block = self.requests[requestID][JNinfoCompletion];
+                
+                block(userData,nil);
             }
             
             
@@ -241,5 +258,89 @@ NSInteger FacebookDownloadNoAccount = 3;
     }];
 
 }
+
+- (void)requestAvatarFromUser:(NSString *)facebookID requestID:(NSNumber *)requestID
+{
+    NSString * imageURL = [NSString stringWithFormat:@"https://graph.facebook.com/v2.1/%@/picture",facebookID];
+    
+    
+    SLRequest * request =
+    [SLRequest requestForServiceType:SLServiceTypeFacebook
+                       requestMethod:SLRequestMethodGET
+                                 URL:[NSURL URLWithString:imageURL]
+                          parameters:@{@"height":@"512",
+                                       @"width":@"512"}];
+    
+    ACAccountType * accountType = [self.fbStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    request.account = [[self.fbStore accountsWithAccountType:accountType] lastObject];
+    
+    
+    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+        
+        
+        if (responseData.length > 100)
+        {
+            UIImage * image = [UIImage imageWithData:responseData];
+            
+            FacebookDownloadImageBlock block = self.requests[requestID][JNimageCompletion];
+            
+            block(image,nil);
+        }
+        
+    }];
+}
+
+
+- (void)requestCoverFromUser:(NSString *)facebookID requestID:(NSNumber *)requestID
+{
+    NSString * coverURL = [NSString stringWithFormat:@"https://graph.facebook.com/v2.1/%@",facebookID];
+    
+    
+    
+    SLRequest * request =
+    [SLRequest requestForServiceType:SLServiceTypeFacebook
+                       requestMethod:SLRequestMethodGET
+                                 URL:[NSURL URLWithString:coverURL]
+                          parameters:@{@"fields":@"cover"}];
+    
+    ACAccountType * accountType = [self.fbStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    request.account = [[self.fbStore accountsWithAccountType:accountType] lastObject];
+    
+    
+    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+        
+        
+        NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+        
+        if (response)
+        {
+            NSDictionary * cover = response[@"cover"];
+            if (cover){
+                NSString * url = cover[@"source"];
+                
+                SLRequest * request3 =
+                [SLRequest requestForServiceType:SLServiceTypeFacebook
+                                   requestMethod:SLRequestMethodGET
+                                             URL:[NSURL URLWithString:url]
+                                      parameters:nil];
+                
+                [request3 performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                    UIImage * image = [UIImage imageWithData:responseData];
+                    
+                    FacebookDownloadImageBlock block = self.requests[requestID][JNimageCompletion];
+                    
+                    block(image,nil);
+                    
+                    
+                }];
+                
+            }
+            
+            
+        }
+    }];
+
+}
+
 
 @end

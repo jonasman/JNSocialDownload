@@ -13,13 +13,19 @@ typedef void(^FacebookDownloadImageBlock)(UIImage * image,NSError * error);
 typedef void(^FacebookDownloadUserInfoBlock)(NSDictionary * userInfo,NSError * error);
 
 
-NSInteger JNFacebookDownloadNoAPPID;
-NSInteger JNFacebookDownloadNoPermissions;
-NSInteger JNFacebookDownloadNoAccount;
+const NSInteger JNFacebookDownloadNoAPPID;
+const NSInteger JNFacebookDownloadNoPermissions;
+const NSInteger JNFacebookDownloadNoAccount;
 
 @interface JNFacebookDownload : NSObject
 
 @property (nonatomic) NSString * appID;
+
+
+- (instancetype)initWithAppID:(NSString *)appid;
+
+
+
 
 - (void)downloadAvatar:(FacebookDownloadImageBlock)completion;
 - (void)downloadCover:(FacebookDownloadImageBlock)completion;
