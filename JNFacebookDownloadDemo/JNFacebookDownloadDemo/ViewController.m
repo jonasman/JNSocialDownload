@@ -25,8 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.facebookDownload = [JNFacebookDownload new];
-    self.facebookDownload.appID = @"380637545425915";
+    self.facebookDownload = [[JNFacebookDownload alloc] initWithAppID:@"380637545425915"];
 }
 
 
