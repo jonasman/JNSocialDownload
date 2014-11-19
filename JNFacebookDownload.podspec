@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'JNFacebookDownload/*.{m,h}'
+  s.source_files = 'JNSocialDownload/*.{m,h}'
   s.resource_bundles = {
     'JNFacebookDownload' => ['Pod/Assets/*.png']
   }
