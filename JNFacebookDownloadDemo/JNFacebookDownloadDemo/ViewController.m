@@ -1,13 +1,13 @@
 //
 //  ViewController.m
-//  JNFacebookDownloadDemo
+//  JNSocialDownloadDemo
 //
 //  Created by Joao Nunes on 14/11/14.
 //  Copyright (c) 2014 joao. All rights reserved.
 //
 
 #import "ViewController.h"
-#import "JNFacebookDownload.h"
+#import "JNSocialDownload.h"
 
 @interface ViewController ()
 
@@ -16,7 +16,7 @@
 
 
 
-@property (nonatomic) JNFacebookDownload * facebookDownload;
+@property (nonatomic) JNSocialDownload * SocialDownload;
 
 @end
 
@@ -25,23 +25,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.facebookDownload = [[JNFacebookDownload alloc] initWithAppID:@"380637545425915"];
+    self.SocialDownload = [[JNSocialDownload alloc] initWithAppID:@"307221439470401" network:JNSocialDownloadNetworkTwitter];
 }
 
 
 - (IBAction)donwloadBasicInfo:(id)sender {
     
-    [self.facebookDownload downloadInformation:^(NSDictionary *userInfo, NSError *error) {
+    [self.SocialDownload downloadInformation:^(NSDictionary *userInfo, NSError *error) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (error)
             {
-                if (error.code == JNFacebookDownloadNoAccount)
+                if (error.code == JNSocialDownloadNoAccount)
                     NSLog(@"No account");
-                else if (error.code == JNFacebookDownloadNoPermissions)
+                else if (error.code == JNSocialDownloadNoPermissions)
                     NSLog(@"No permissions");
-                else if (error.code == JNFacebookDownloadNoAPPID)
+                else if (error.code == JNSocialDownloadNoAPPID)
                     NSLog(@"No APP ID Configured");
             }
             else
@@ -54,17 +54,17 @@
 }
 - (IBAction)downloadAvatar:(id)sender {
     
-    [self.facebookDownload downloadAvatar:^(UIImage *image, NSError *error) {
+    [self.SocialDownload downloadAvatar:^(UIImage *image, NSError *error) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (error)
             {
-                if (error.code == JNFacebookDownloadNoAccount)
+                if (error.code == JNSocialDownloadNoAccount)
                     NSLog(@"No account");
-                else if (error.code == JNFacebookDownloadNoPermissions)
+                else if (error.code == JNSocialDownloadNoPermissions)
                     NSLog(@"No permissions");
-                else if (error.code == JNFacebookDownloadNoAPPID)
+                else if (error.code == JNSocialDownloadNoAPPID)
                     NSLog(@"No APP ID Configured");}
             else
             {
@@ -79,7 +79,7 @@
 }
 - (IBAction)downloadCover:(id)sender {
     
-    [self.facebookDownload downloadCover:^(UIImage *image, NSError *error) {
+    [self.SocialDownload downloadCover:^(UIImage *image, NSError *error) {
         
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -87,11 +87,11 @@
             
             if (error)
             {
-                if (error.code == JNFacebookDownloadNoAccount)
+                if (error.code == JNSocialDownloadNoAccount)
                     NSLog(@"No account");
-                else if (error.code == JNFacebookDownloadNoPermissions)
+                else if (error.code == JNSocialDownloadNoPermissions)
                     NSLog(@"No permissions");
-                else if (error.code == JNFacebookDownloadNoAPPID)
+                else if (error.code == JNSocialDownloadNoAPPID)
                     NSLog(@"No APP ID Configured");
             }
             else
