@@ -233,46 +233,16 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
  
  }
 
-- (void)requestMe:(SocialDownloadType)downloadType requestID:(NSNumber *)requestID {
+- (void)requestMe:(SocialDownloadType)downloadType requestID:(NSNumber *)requestID
+{
     
     
-    ACAccountType * accountType = nil;
-    NSURL *meurl = nil;
-    SLRequest *merequest = nil;
-    
-    
-    if (self.network == JNSocialDownloadNetworkFacebook)
-    {
-        accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-        meurl = [NSURL URLWithString:@"https://graph.facebook.com/me"];
-        
-        
-        merequest = [SLRequest requestForServiceType:SLServiceTypeFacebook
-                                       requestMethod:SLRequestMethodGET
-                                                 URL:meurl
-                                          parameters:nil];
-        
-    }
-    else if (self.network == JNSocialDownloadNetworkTwitter)
-    {
-        accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-        meurl = [NSURL URLWithString:@"https://api.twitter.com/1.1/account/verify_credentials.json"];
-        
-        
-        merequest = [SLRequest requestForServiceType:SLServiceTypeTwitter
-                                       requestMethod:SLRequestMethodGET
-                                                 URL:meurl
-                                          parameters:nil];
-    }
-    
+    SLRequest *merequest = [self requestForNetwork:self.network
+                                          dataType:SocialDownloadTypeInformation
+                                          userData:nil];
     
     
     __weak typeof(self)weakSelf = self;
-
-    
-    
-    ACAccount * account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
-    merequest.account = account;
     
     [merequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         
@@ -308,50 +278,15 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
 
 - (void)requestAvatarFromUser:(NSDictionary *)userData requestID:(NSNumber *)requestID
 {
-    SLRequest * request;
     
-    if (self.network == JNSocialDownloadNetworkFacebook)
-    {
-        NSString * SocialID = userData[@"id"];
-        NSString * imageURL = [NSString stringWithFormat:@"https://graph.facebook.com/v2.1/%@/picture",SocialID];
-        
-        
-        request =
-        [SLRequest requestForServiceType:SLServiceTypeFacebook
-                           requestMethod:SLRequestMethodGET
-                                     URL:[NSURL URLWithString:imageURL]
-                              parameters:@{@"height":@"512",
-                                           @"width":@"512"}];
-        
-        ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-        request.account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
-
-        
-    }
-    
-    else if (self.network == JNSocialDownloadNetworkTwitter)
-    {
-        
-        NSString * imageURL = userData[@"profile_image_url"];
-        
-        
-        request =
-        [SLRequest requestForServiceType:SLServiceTypeTwitter
-                           requestMethod:SLRequestMethodGET
-                                     URL:[NSURL URLWithString:imageURL]
-                              parameters:nil];
-        
-        ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-        request.account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
-
-    }
+    SLRequest * request  = [self requestForNetwork:self.network
+                                          dataType:SocialDownloadTypeAvatar
+                                          userData:userData];
     
     
     __weak typeof(self)weakSelf = self;
 
-    
-    
-    
+
     [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         
         
@@ -372,47 +307,13 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
 {
     
     
-    SLRequest * request;
-    
-    if (self.network == JNSocialDownloadNetworkFacebook)
-    {
-        NSString * SocialID = userData[@"id"];
-        NSString * coverURL = [NSString stringWithFormat:@"https://graph.facebook.com/v2.1/%@",SocialID];
-        
-        
-        
-        request =
-        [SLRequest requestForServiceType:SLServiceTypeFacebook
-                           requestMethod:SLRequestMethodGET
-                                     URL:[NSURL URLWithString:coverURL]
-                              parameters:@{@"fields":@"cover"}];
-        
-        ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-        request.account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
-        
-    }
-    
-    else if (self.network == JNSocialDownloadNetworkTwitter)
-    {
-        
-        NSString * imageURL = userData[@"profile_background_image_url"];
-        
-        
-        request =
-        [SLRequest requestForServiceType:SLServiceTypeTwitter
-                           requestMethod:SLRequestMethodGET
-                                     URL:[NSURL URLWithString:imageURL]
-                              parameters:nil];
-        
-        ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-        request.account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
-    }
+    SLRequest * request  = [self requestForNetwork:self.network
+                                          dataType:SocialDownloadTypeCover
+                                          userData:userData];
     
     
     __weak typeof(self)weakSelf = self;
 
-    
-   
     
     [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         
@@ -464,6 +365,122 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
         
     }];
 
+}
+#pragma mark Request preparation
+- (SLRequest *)requestForNetwork:(JNSocialDownloadNetwork)network
+                        dataType:(SocialDownloadType)type
+                        userData:(NSDictionary *)userData
+{
+    
+    if (network == JNSocialDownloadNetworkFacebook)
+    {
+
+        SLRequest * request;
+        
+        
+        if (type == SocialDownloadTypeInformation)
+        {
+            
+            NSURL * meurl = [NSURL URLWithString:@"https://graph.facebook.com/me"];
+            
+            
+            request = [SLRequest requestForServiceType:SLServiceTypeFacebook
+                                         requestMethod:SLRequestMethodGET
+                                                   URL:meurl
+                                            parameters:nil];
+            
+            
+        }
+        else if (type == SocialDownloadTypeAvatar)
+        {
+            
+            NSString * SocialID = userData[@"id"];
+            NSString * imageURL = [NSString stringWithFormat:@"https://graph.facebook.com/v2.1/%@/picture",SocialID];
+            
+            
+            request = [SLRequest requestForServiceType:SLServiceTypeFacebook
+                                         requestMethod:SLRequestMethodGET
+                                                   URL:[NSURL URLWithString:imageURL]
+                                            parameters:@{@"height":@"512",
+                                                         @"width":@"512"}];
+            
+        }
+        else if (type == SocialDownloadTypeCover)
+        {
+            
+            NSString * SocialID = userData[@"id"];
+            NSString * coverURL = [NSString stringWithFormat:@"https://graph.facebook.com/v2.1/%@",SocialID];
+            
+            
+            
+            request = [SLRequest requestForServiceType:SLServiceTypeFacebook
+                                         requestMethod:SLRequestMethodGET
+                                                   URL:[NSURL URLWithString:coverURL]
+                                            parameters:@{@"fields":@"cover"}];
+            
+        }
+        
+        ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+        ACAccount * account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
+        request.account = account;
+        
+        
+        return request;
+        
+    }
+    
+    
+    else if (network == JNSocialDownloadNetworkTwitter)
+    {
+        
+        
+        
+        SLRequest * request;
+        
+        if (type == SocialDownloadTypeInformation)
+        {
+            
+            NSURL * meurl = [NSURL URLWithString:@"https://api.twitter.com/1.1/account/verify_credentials.json"];
+            
+            
+            request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                         requestMethod:SLRequestMethodGET
+                                                   URL:meurl
+                                            parameters:nil];
+            
+        }
+        else if (type == SocialDownloadTypeAvatar)
+        {
+            NSString * imageURL = userData[@"profile_image_url"];
+            
+            
+            request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                         requestMethod:SLRequestMethodGET
+                                                   URL:[NSURL URLWithString:imageURL]
+                                            parameters:nil];
+        }
+        else if (type == SocialDownloadTypeCover)
+        {
+            
+            NSString * imageURL = userData[@"profile_background_image_url"];
+            
+            request = [SLRequest requestForServiceType:SLServiceTypeTwitter
+                                         requestMethod:SLRequestMethodGET
+                                                   URL:[NSURL URLWithString:imageURL]
+                                            parameters:nil];
+
+            
+        }
+        
+        ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        ACAccount * account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
+        request.account = account;
+        
+        
+        return request;
+    }
+    
+    return nil;
 }
 
 
