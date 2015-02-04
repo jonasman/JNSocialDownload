@@ -323,6 +323,10 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
                               parameters:@{@"height":@"512",
                                            @"width":@"512"}];
         
+        ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+        request.account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
+
+        
     }
     
     else if (self.network == JNSocialDownloadNetworkTwitter)
@@ -332,18 +336,20 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
         
         
         request =
-        [SLRequest requestForServiceType:SLServiceTypeFacebook
+        [SLRequest requestForServiceType:SLServiceTypeTwitter
                            requestMethod:SLRequestMethodGET
                                      URL:[NSURL URLWithString:imageURL]
                               parameters:nil];
+        
+        ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        request.account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
+
     }
     
     
     __weak typeof(self)weakSelf = self;
 
     
-    ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-    request.account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
     
     
     [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
@@ -381,6 +387,9 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
                                      URL:[NSURL URLWithString:coverURL]
                               parameters:@{@"fields":@"cover"}];
         
+        ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+        request.account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
+        
     }
     
     else if (self.network == JNSocialDownloadNetworkTwitter)
@@ -390,19 +399,20 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
         
         
         request =
-        [SLRequest requestForServiceType:SLServiceTypeFacebook
+        [SLRequest requestForServiceType:SLServiceTypeTwitter
                            requestMethod:SLRequestMethodGET
                                      URL:[NSURL URLWithString:imageURL]
                               parameters:nil];
+        
+        ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+        request.account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
     }
     
     
     __weak typeof(self)weakSelf = self;
 
     
-    ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-    request.account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
-    
+   
     
     [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         
