@@ -66,6 +66,8 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
     return self;
 }
 
+#pragma mark Accessors
+
 - (ACAccountStore *)accountsStore
 {
     if (!_accountsStore)
@@ -76,7 +78,7 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
 
 
 
-#pragma mark Public API
+#pragma mark - Public API
 
 - (void)downloadAvatar:(SocialDownloadImageBlock)completion
 {
@@ -117,7 +119,7 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
 
 
 
-#pragma mark Social Logic
+#pragma mark - Social Logic
 
 - (void)selectSocialIOS:(SocialDownloadType)downloadType requestID:(NSNumber *)requestID
 {
@@ -366,6 +368,7 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
     }];
 
 }
+
 #pragma mark Request preparation
 - (SLRequest *)requestForNetwork:(JNSocialDownloadNetwork)network
                         dataType:(SocialDownloadType)type
@@ -433,9 +436,8 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
     else if (network == JNSocialDownloadNetworkTwitter)
     {
         
-        
-        
         SLRequest * request;
+        
         
         if (type == SocialDownloadTypeInformation)
         {
