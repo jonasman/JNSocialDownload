@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *socialNetwork;
 
 
 @property (nonatomic) JNSocialDownload * SocialDownload;
@@ -25,7 +26,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.SocialDownload = [[JNSocialDownload alloc] initWithAppID:@"307221439470401" network:JNSocialDownloadNetworkTwitter];
+    self.SocialDownload = [[JNSocialDownload alloc] initWithAppID:@"380637545425915" network:JNSocialDownloadNetworkFacebook];
+}
+- (IBAction)networkChanged:(UISegmentedControl *)sender
+{
+    if (sender.selectedSegmentIndex == 0)
+    {
+        self.SocialDownload = [[JNSocialDownload alloc] initWithAppID:@"380637545425915" network:JNSocialDownloadNetworkFacebook];
+    }
+    else if (sender.selectedSegmentIndex == 1)
+    {
+        self.SocialDownload = [[JNSocialDownload alloc] initWithAppID:@"380637545425915" network:JNSocialDownloadNetworkTwitter];
+    }
 }
 
 

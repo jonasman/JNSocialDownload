@@ -10,11 +10,11 @@
 #import <UIKIt/UIKit.h>
 
 
-typedef enum{
+typedef NS_ENUM(NSInteger, JNSocialDownloadNetwork){
     JNSocialDownloadNetworkFacebook,
     JNSocialDownloadNetworkTwitter
     
-}JNSocialDownloadNetwork;
+};
 
 
 typedef void(^SocialDownloadImageBlock)(UIImage * image,NSError * error);
@@ -24,6 +24,9 @@ typedef void(^SocialDownloadUserInfoBlock)(NSDictionary * userInfo,NSError * err
 const NSInteger JNSocialDownloadNoAPPID;
 const NSInteger JNSocialDownloadNoPermissions;
 const NSInteger JNSocialDownloadNoAccount;
+
+
+
 
 @interface JNSocialDownload : NSObject
 
