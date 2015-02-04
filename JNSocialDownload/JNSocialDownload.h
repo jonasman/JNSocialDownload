@@ -33,7 +33,8 @@ const NSInteger JNSocialDownloadNoAccount;
 @property (nonatomic) NSString * appID;
 
 
-- (instancetype)initWithAppID:(NSString *)appid network:(JNSocialDownloadNetwork)network;
+- (instancetype)initWithAppID:(NSString *)appid
+                      network:(JNSocialDownloadNetwork)network;
 
 
 

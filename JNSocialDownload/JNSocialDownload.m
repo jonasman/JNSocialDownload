@@ -50,11 +50,13 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
     if (self) {
         _requests = [NSMutableDictionary new];
         _lastRequestID = 0;
+        _network = JNSocialDownloadNetworkFacebook;
     }
     return self;
 }
 
-- (instancetype)initWithAppID:(NSString *)appid network:(JNSocialDownloadNetwork)network
+- (instancetype)initWithAppID:(NSString *)appid
+                      network:(JNSocialDownloadNetwork)network
 {
     self = [self init];
     if (self) {
@@ -170,7 +172,8 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
     
     
     
-    
+    __weak typeof(self)weakSelf = self;
+
     
     
     [self.accountsStore requestAccessToAccountsWithType:accountType options:socialOptions completion:^(BOOL granted, NSError *error) {
@@ -182,14 +185,14 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
                 downloadType == SocialDownloadTypeCover)
             {
                 
-                SocialDownloadImageBlock block = self.requests[requestID][JNimageCompletion];
+                SocialDownloadImageBlock block = weakSelf.requests[requestID][JNimageCompletion];
                 
                 block(nil,[NSError errorWithDomain:@"JNSocialDownload" code:JNSocialDownloadNoAccount userInfo:@{NSLocalizedDescriptionKey:@"No Social Account configured"}]);
                 
             }
             else if (downloadType == SocialDownloadTypeInformation)
             {
-                SocialDownloadUserInfoBlock block = self.requests[requestID][JNinfoCompletion];
+                SocialDownloadUserInfoBlock block = weakSelf.requests[requestID][JNinfoCompletion];
                 
                 block(nil,[NSError errorWithDomain:@"JNSocialDownload" code:JNSocialDownloadNoAccount userInfo:@{NSLocalizedDescriptionKey:@"No Social Account configured"}]);
             }
@@ -211,14 +214,14 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
                 downloadType == SocialDownloadTypeCover)
             {
                 
-                SocialDownloadImageBlock block = self.requests[requestID][JNimageCompletion];
+                SocialDownloadImageBlock block = weakSelf.requests[requestID][JNimageCompletion];
                 
                 block(nil,[NSError errorWithDomain:@"JNSocialDownload" code:JNSocialDownloadNoPermissions userInfo:@{NSLocalizedDescriptionKey:@"Social permission not granted"}]);
                 
             }
             else if (downloadType == SocialDownloadTypeInformation)
             {
-                SocialDownloadUserInfoBlock block = self.requests[requestID][JNinfoCompletion];
+                SocialDownloadUserInfoBlock block = weakSelf.requests[requestID][JNinfoCompletion];
                 
                 block(nil,[NSError errorWithDomain:@"JNSocialDownload" code:JNSocialDownloadNoPermissions userInfo:@{NSLocalizedDescriptionKey:@"Social permission not granted"}]);
             }
@@ -264,7 +267,8 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
     
     
     
-    
+    __weak typeof(self)weakSelf = self;
+
     
     
     ACAccount * account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
@@ -281,15 +285,15 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
             
             if (downloadType == SocialDownloadTypeAvatar)
             {
-                [self requestAvatarFromUser:userData requestID:requestID];
+                [weakSelf requestAvatarFromUser:userData requestID:requestID];
             }
             else if (downloadType == SocialDownloadTypeCover)
             {
-                [self requestCoverFromUser:userData requestID:requestID];
+                [weakSelf requestCoverFromUser:userData requestID:requestID];
             }
             else if (downloadType == SocialDownloadTypeInformation)
             {
-                SocialDownloadUserInfoBlock block = self.requests[requestID][JNinfoCompletion];
+                SocialDownloadUserInfoBlock block = weakSelf.requests[requestID][JNinfoCompletion];
                 
                 block(userData,nil);
             }
@@ -334,6 +338,10 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
                               parameters:nil];
     }
     
+    
+    __weak typeof(self)weakSelf = self;
+
+    
     ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
     request.account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
     
@@ -345,7 +353,7 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
         {
             UIImage * image = [UIImage imageWithData:responseData];
             
-            SocialDownloadImageBlock block = self.requests[requestID][JNimageCompletion];
+            SocialDownloadImageBlock block = weakSelf.requests[requestID][JNimageCompletion];
             
             block(image,nil);
         }
@@ -389,13 +397,16 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
     }
     
     
+    __weak typeof(self)weakSelf = self;
+
+    
     ACAccountType * accountType = [self.accountsStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
     request.account = [[self.accountsStore accountsWithAccountType:accountType] lastObject];
     
     
     [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         
-        if (self.network == JNSocialDownloadNetworkFacebook)
+        if (weakSelf.network == JNSocialDownloadNetworkFacebook)
         {
             
             NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
@@ -417,7 +428,7 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
                     [request3 performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
                         UIImage * image = [UIImage imageWithData:responseData];
                         
-                        SocialDownloadImageBlock block = self.requests[requestID][JNimageCompletion];
+                        SocialDownloadImageBlock block = weakSelf.requests[requestID][JNimageCompletion];
                         
                         block(image,nil);
                         
@@ -428,13 +439,13 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
             }
         }
         
-        else if (self.network == JNSocialDownloadNetworkTwitter)
+        else if (weakSelf.network == JNSocialDownloadNetworkTwitter)
         {
             if (responseData.length > 100)
             {
                 UIImage * image = [UIImage imageWithData:responseData];
                 
-                SocialDownloadImageBlock block = self.requests[requestID][JNimageCompletion];
+                SocialDownloadImageBlock block = weakSelf.requests[requestID][JNimageCompletion];
                 
                 block(image,nil);
             }
