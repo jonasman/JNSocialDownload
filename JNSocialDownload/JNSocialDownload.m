@@ -291,15 +291,7 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
 
     [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
         
-        
-        if (responseData.length > 100)
-        {
-            UIImage * image = [UIImage imageWithData:responseData];
-            
-            SocialDownloadImageBlock block = weakSelf.requests[requestID][JNimageCompletion];
-            
-            block(image,nil);
-        }
+         [weakSelf processImageData:responseData requestID:requestID];
         
     }];
 }
@@ -324,9 +316,10 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
             
             NSDictionary * response = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
             
+            BOOL anyError = NO;
+            
             if (response)
             {
-                
                 
                 NSDictionary * cover = response[@"cover"];
                 if (cover){
@@ -339,34 +332,51 @@ static NSString * const JNinfoCompletion = @"JNinfoCompletion";
                                           parameters:nil];
                     
                     [request3 performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                        UIImage * image = [UIImage imageWithData:responseData];
                         
-                        SocialDownloadImageBlock block = weakSelf.requests[requestID][JNimageCompletion];
-                        
-                        block(image,nil);
+                         [weakSelf processImageData:responseData requestID:requestID];
                         
                         
                     }];
                     
                 }
+                else
+                {
+                    anyError = YES;
+                }
             }
+            else
+            {
+                anyError = YES;
+            }
+            
+            if (anyError)
+            {
+                ////TODO: throw an error
+            }
+            
+            
         }
         
         else if (weakSelf.network == JNSocialDownloadNetworkTwitter)
         {
-            if (responseData.length > 100)
-            {
-                UIImage * image = [UIImage imageWithData:responseData];
-                
-                SocialDownloadImageBlock block = weakSelf.requests[requestID][JNimageCompletion];
-                
-                block(image,nil);
-            }
+            [weakSelf processImageData:responseData requestID:requestID];
         }
         
         
     }];
 
+}
+
+- (void)processImageData:(NSData *)imageData requestID:(NSNumber *)requestID
+{
+    if (imageData.length > 100)
+    {
+        UIImage * image = [UIImage imageWithData:imageData];
+        
+        SocialDownloadImageBlock block = self.requests[requestID][JNimageCompletion];
+        
+        block(image,nil);
+    }
 }
 
 #pragma mark Request preparation
