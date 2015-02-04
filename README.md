@@ -1,16 +1,16 @@
-JNFacebookDownload
+JNSocialDownload
 ======================
 
-A Dead simple facebook data downloader
+A Dead simple Facebook and Twitter data downloader
 
 
 Getting Started
 ============
 
-1. Copy JNFacebookDownload classes into your project.
-2. `facebookDownload = [[JNFacebookDownload alloc] init];`
-3. `facebookDownload.appID = YOUR_FACEBOOK_APP_ID` . If you have used FacebookSDK and you set the app id in the info.plist then this library is also able to get it from there
-4. Download some data with `- (void)downloadAvatar:(FacebookDownloadImageBlock)completion;` 
+1. Copy JNSocialDownload classes into your project.
+2. `socialDownload = [[JNSocialDownload alloc] init];`
+3. `socialDownload.appID = YOUR_FACEBOOK_APP_ID` . If you have used FacebookSDK and you set the app id in the info.plist then this library is also able to get it from there
+4. Download some data with `- (void)downloadAvatar:(SocialDownloadImageBlock)completion;` 
 
 
 Facebook APP ID
