@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface JNFacebookDownloadDemoTests : XCTestCase
+@interface JNSocialDownloadDemoTests : XCTestCase
 
 @end
 
-@implementation JNFacebookDownloadDemoTests
+@implementation JNSocialDownloadDemoTests
 
 - (void)setUp {
     [super setUp];

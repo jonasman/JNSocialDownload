@@ -14,7 +14,7 @@
 		CF7453F31A162F3A00F78DE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF7453F11A162F3A00F78DE8 /* Main.storyboard */; };
 		CF7453F51A162F3A00F78DE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF7453F41A162F3A00F78DE8 /* Images.xcassets */; };
 		CF7453F81A162F3A00F78DE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7453F61A162F3A00F78DE8 /* LaunchScreen.xib */; };
-		CF7454041A162F3A00F78DE8 /* JNFacebookDownloadDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7454031A162F3A00F78DE8 /* JNFacebookDownloadDemoTests.m */; };
+		CFF779F71A827BA000F682BA /* JNSocialDownloadDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7454031A162F3A00F78DE8 /* JNSocialDownloadDemoTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		6D934D551A1CB0DB0092B0A1 /* JNSocialDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNSocialDownload.h; sourceTree = "<group>"; };
 		6D934D561A1CB0DB0092B0A1 /* JNSocialDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNSocialDownload.m; sourceTree = "<group>"; };
-		CF7453E41A162F3A00F78DE8 /* JNFacebookDownloadDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JNFacebookDownloadDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF7453E41A162F3A00F78DE8 /* JNSocialDownloadDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JNSocialDownloadDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7453E81A162F3A00F78DE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF7453E91A162F3A00F78DE8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CF7453EB1A162F3A00F78DE8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -40,9 +40,9 @@
 		CF7453F21A162F3A00F78DE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CF7453F41A162F3A00F78DE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CF7453F71A162F3A00F78DE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		CF7453FD1A162F3A00F78DE8 /* JNFacebookDownloadDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JNFacebookDownloadDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF7453FD1A162F3A00F78DE8 /* JNSocialDownloadDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JNSocialDownloadDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF7454021A162F3A00F78DE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CF7454031A162F3A00F78DE8 /* JNFacebookDownloadDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JNFacebookDownloadDemoTests.m; sourceTree = "<group>"; };
+		CF7454031A162F3A00F78DE8 /* JNSocialDownloadDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JNSocialDownloadDemoTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +76,8 @@
 		CF7453DB1A162F3A00F78DE8 = {
 			isa = PBXGroup;
 			children = (
-				CF7453E61A162F3A00F78DE8 /* JNFacebookDownloadDemo */,
-				CF7454001A162F3A00F78DE8 /* JNFacebookDownloadDemoTests */,
+				CF7453E61A162F3A00F78DE8 /* JNSocialDownloadDemo */,
+				CF7454001A162F3A00F78DE8 /* JNSocialDownloadDemoTests */,
 				CF7453E51A162F3A00F78DE8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,13 +85,13 @@
 		CF7453E51A162F3A00F78DE8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF7453E41A162F3A00F78DE8 /* JNFacebookDownloadDemo.app */,
-				CF7453FD1A162F3A00F78DE8 /* JNFacebookDownloadDemoTests.xctest */,
+				CF7453E41A162F3A00F78DE8 /* JNSocialDownloadDemo.app */,
+				CF7453FD1A162F3A00F78DE8 /* JNSocialDownloadDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CF7453E61A162F3A00F78DE8 /* JNFacebookDownloadDemo */ = {
+		CF7453E61A162F3A00F78DE8 /* JNSocialDownloadDemo */ = {
 			isa = PBXGroup;
 			children = (
 				6D934D541A1CB0DB0092B0A1 /* JNSocialDownload */,
@@ -104,7 +104,7 @@
 				CF7453F61A162F3A00F78DE8 /* LaunchScreen.xib */,
 				CF7453E71A162F3A00F78DE8 /* Supporting Files */,
 			);
-			path = JNFacebookDownloadDemo;
+			path = JNSocialDownloadDemo;
 			sourceTree = "<group>";
 		};
 		CF7453E71A162F3A00F78DE8 /* Supporting Files */ = {
@@ -116,13 +116,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CF7454001A162F3A00F78DE8 /* JNFacebookDownloadDemoTests */ = {
+		CF7454001A162F3A00F78DE8 /* JNSocialDownloadDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				CF7454031A162F3A00F78DE8 /* JNFacebookDownloadDemoTests.m */,
+				CF7454031A162F3A00F78DE8 /* JNSocialDownloadDemoTests.m */,
 				CF7454011A162F3A00F78DE8 /* Supporting Files */,
 			);
-			path = JNFacebookDownloadDemoTests;
+			path = JNSocialDownloadDemoTests;
 			sourceTree = "<group>";
 		};
 		CF7454011A162F3A00F78DE8 /* Supporting Files */ = {
@@ -136,9 +136,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CF7453E31A162F3A00F78DE8 /* JNFacebookDownloadDemo */ = {
+		CF7453E31A162F3A00F78DE8 /* JNSocialDownloadDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CF7454071A162F3A00F78DE8 /* Build configuration list for PBXNativeTarget "JNFacebookDownloadDemo" */;
+			buildConfigurationList = CF7454071A162F3A00F78DE8 /* Build configuration list for PBXNativeTarget "JNSocialDownloadDemo" */;
 			buildPhases = (
 				CF7453E01A162F3A00F78DE8 /* Sources */,
 				CF7453E11A162F3A00F78DE8 /* Frameworks */,
@@ -148,14 +148,14 @@
 			);
 			dependencies = (
 			);
-			name = JNFacebookDownloadDemo;
+			name = JNSocialDownloadDemo;
 			productName = JNFacebookDownloadDemo;
-			productReference = CF7453E41A162F3A00F78DE8 /* JNFacebookDownloadDemo.app */;
+			productReference = CF7453E41A162F3A00F78DE8 /* JNSocialDownloadDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CF7453FC1A162F3A00F78DE8 /* JNFacebookDownloadDemoTests */ = {
+		CF7453FC1A162F3A00F78DE8 /* JNSocialDownloadDemoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CF74540A1A162F3A00F78DE8 /* Build configuration list for PBXNativeTarget "JNFacebookDownloadDemoTests" */;
+			buildConfigurationList = CF74540A1A162F3A00F78DE8 /* Build configuration list for PBXNativeTarget "JNSocialDownloadDemoTests" */;
 			buildPhases = (
 				CF7453F91A162F3A00F78DE8 /* Sources */,
 				CF7453FA1A162F3A00F78DE8 /* Frameworks */,
@@ -166,9 +166,9 @@
 			dependencies = (
 				CF7453FF1A162F3A00F78DE8 /* PBXTargetDependency */,
 			);
-			name = JNFacebookDownloadDemoTests;
+			name = JNSocialDownloadDemoTests;
 			productName = JNFacebookDownloadDemoTests;
-			productReference = CF7453FD1A162F3A00F78DE8 /* JNFacebookDownloadDemoTests.xctest */;
+			productReference = CF7453FD1A162F3A00F78DE8 /* JNSocialDownloadDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -185,11 +185,10 @@
 					};
 					CF7453FC1A162F3A00F78DE8 = {
 						CreatedOnToolsVersion = 6.1;
-						TestTargetID = CF7453E31A162F3A00F78DE8;
 					};
 				};
 			};
-			buildConfigurationList = CF7453DF1A162F3A00F78DE8 /* Build configuration list for PBXProject "JNFacebookDownloadDemo" */;
+			buildConfigurationList = CF7453DF1A162F3A00F78DE8 /* Build configuration list for PBXProject "JNSocialDownloadDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -202,8 +201,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CF7453E31A162F3A00F78DE8 /* JNFacebookDownloadDemo */,
-				CF7453FC1A162F3A00F78DE8 /* JNFacebookDownloadDemoTests */,
+				CF7453E31A162F3A00F78DE8 /* JNSocialDownloadDemo */,
+				CF7453FC1A162F3A00F78DE8 /* JNSocialDownloadDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -244,7 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF7454041A162F3A00F78DE8 /* JNFacebookDownloadDemoTests.m in Sources */,
+				CFF779F71A827BA000F682BA /* JNSocialDownloadDemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,7 +252,7 @@
 /* Begin PBXTargetDependency section */
 		CF7453FF1A162F3A00F78DE8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CF7453E31A162F3A00F78DE8 /* JNFacebookDownloadDemo */;
+			target = CF7453E31A162F3A00F78DE8 /* JNSocialDownloadDemo */;
 			targetProxy = CF7453FE1A162F3A00F78DE8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -358,10 +357,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = JNFacebookDownloadDemo/Info.plist;
+				INFOPLIST_FILE = JNSocialDownloadDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = JNSocialDownloadDemo;
 			};
 			name = Debug;
 		};
@@ -369,17 +368,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = JNFacebookDownloadDemo/Info.plist;
+				INFOPLIST_FILE = JNSocialDownloadDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = JNSocialDownloadDemo;
 			};
 			name = Release;
 		};
 		CF74540B1A162F3A00F78DE8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -388,32 +386,29 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = JNFacebookDownloadDemoTests/Info.plist;
+				INFOPLIST_FILE = JNSocialDownloadDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JNFacebookDownloadDemo.app/JNFacebookDownloadDemo";
+				PRODUCT_NAME = JNSocialDownloadDemoTests;
 			};
 			name = Debug;
 		};
 		CF74540C1A162F3A00F78DE8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = JNFacebookDownloadDemoTests/Info.plist;
+				INFOPLIST_FILE = JNSocialDownloadDemoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JNFacebookDownloadDemo.app/JNFacebookDownloadDemo";
+				PRODUCT_NAME = JNSocialDownloadDemoTests;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CF7453DF1A162F3A00F78DE8 /* Build configuration list for PBXProject "JNFacebookDownloadDemo" */ = {
+		CF7453DF1A162F3A00F78DE8 /* Build configuration list for PBXProject "JNSocialDownloadDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CF7454051A162F3A00F78DE8 /* Debug */,
@@ -422,7 +417,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CF7454071A162F3A00F78DE8 /* Build configuration list for PBXNativeTarget "JNFacebookDownloadDemo" */ = {
+		CF7454071A162F3A00F78DE8 /* Build configuration list for PBXNativeTarget "JNSocialDownloadDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CF7454081A162F3A00F78DE8 /* Debug */,
@@ -431,7 +426,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CF74540A1A162F3A00F78DE8 /* Build configuration list for PBXNativeTarget "JNFacebookDownloadDemoTests" */ = {
+		CF74540A1A162F3A00F78DE8 /* Build configuration list for PBXNativeTarget "JNSocialDownloadDemoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CF74540B1A162F3A00F78DE8 /* Debug */,
