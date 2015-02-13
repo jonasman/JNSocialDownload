@@ -165,7 +165,7 @@ extension JNSocialDownload
         
         
         
-        self.accountStore .requestAccessToAccountsWithType(accountType, options: socialOptions, completion: { (granted, error) -> Void in
+        self.accountStore.requestAccessToAccountsWithType(accountType, options: socialOptions, completion: { [weak self] (granted, error) -> Void in
             
             if (error != nil)
             {
@@ -204,7 +204,7 @@ extension JNSocialDownload
             
             if (granted)
             {
-                self.requestMe(downloadType, request: request)
+                self?.requestMe(downloadType, request: request)
             }
             else
                 
@@ -256,7 +256,7 @@ extension JNSocialDownload
             userData: nil)
         
         
-        merequest?.performRequestWithHandler( { [weak self,request] (responseData, urlResponse, error) -> Void in
+        merequest?.performRequestWithHandler( { [weak self] (responseData, urlResponse, error) -> Void in
             
             let userData = NSJSONSerialization.JSONObjectWithData(responseData!, options: NSJSONReadingOptions.allZeros, error: nil) as Dictionary<String,AnyObject>
             
@@ -292,10 +292,11 @@ extension JNSocialDownload
             userData: userData)
 
         // (NSData!, NSHTTPURLResponse!, NSError!) -> Void
-        avatarRequest?.performRequestWithHandler( { (responseData: NSData!, urlResponse:NSHTTPURLResponse!, error:NSError!) -> Void in
-            
-            self.processImage(responseData, request: request)
-            
+        avatarRequest?.performRequestWithHandler( { [weak self] (responseData: NSData!, urlResponse:NSHTTPURLResponse!, error:NSError!) -> Void in
+			
+			if (self != nil){
+				self!.processImage(responseData, request: request)
+			}
         })
         
     }
@@ -307,7 +308,7 @@ extension JNSocialDownload
             userData: userData)
         
         
-        coverRequest?.performRequestWithHandler( {( responseData, urlResponse, error) -> Void in
+        coverRequest?.performRequestWithHandler( { [weak self] (responseData, urlResponse, error) -> Void in
             
             if (request.network == .Facebook)
             {
@@ -326,10 +327,13 @@ extension JNSocialDownload
                         let request3 = SLRequest(forServiceType: SLServiceTypeFacebook, requestMethod: .GET, URL: NSURL(string: url), parameters: nil)
                         
                         
-                        request3.performRequestWithHandler( {(responseData, urlResponse, error) -> Void in
-                            
-                            self.processImage(responseData, request: request)
-                            
+                        request3.performRequestWithHandler( { [weak self] (responseData, urlResponse, error) -> Void in
+							
+							
+							if (self != nil){
+								self!.processImage(responseData, request: request)
+							}
+							
                         })
 
                         
@@ -340,7 +344,9 @@ extension JNSocialDownload
             }
             else if (request.network == .Twitter)
             {
-                self.processImage(responseData, request: request)
+				if (self != nil){
+					self!.processImage(responseData, request: request)
+				}
             }
             
         })
