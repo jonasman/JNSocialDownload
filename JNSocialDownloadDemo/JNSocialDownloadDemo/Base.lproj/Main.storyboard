@@ -66,9 +66,6 @@
                                     <segment title="Facebook"/>
                                     <segment title="Twitter"/>
                                 </segments>
-                                <connections>
-                                    <action selector="networkChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="e7k-rd-RFc"/>
-                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

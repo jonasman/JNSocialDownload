@@ -26,22 +26,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.SocialDownload = [[JNSocialDownload alloc] initWithAppID:@"380637545425915" network:JNSocialDownloadNetworkFacebook];
-}
-- (IBAction)networkChanged:(UISegmentedControl *)sender
-{
-    if (sender.selectedSegmentIndex == 0)
-    {
-        self.SocialDownload = [[JNSocialDownload alloc] initWithAppID:@"380637545425915" network:JNSocialDownloadNetworkFacebook];
-    }
-    else if (sender.selectedSegmentIndex == 1)
-    {
-        self.SocialDownload = [[JNSocialDownload alloc] initWithAppID:@"380637545425915" network:JNSocialDownloadNetworkTwitter];
-    }
+    self.SocialDownload = [[JNSocialDownload alloc] initWithAppID:@"380637545425915"];
 }
 
 
 - (IBAction)donwloadBasicInfo:(id)sender {
+    
+    JNSocialDownloadNetwork network = JNSocialDownloadNetworkFacebook;
+    
+    if (self.socialNetwork.selectedSegmentIndex == 1)
+    {
+        network = JNSocialDownloadNetworkTwitter;
+    }
     
     [self.SocialDownload downloadInformation:^(NSDictionary *userInfo, NSError *error) {
         
@@ -62,9 +58,16 @@
             }
         });
         
-    }];
+    } forNetwork:network];
 }
 - (IBAction)downloadAvatar:(id)sender {
+    
+    JNSocialDownloadNetwork network = JNSocialDownloadNetworkFacebook;
+    
+    if (self.socialNetwork.selectedSegmentIndex == 1)
+    {
+        network = JNSocialDownloadNetworkTwitter;
+    }
     
     [self.SocialDownload downloadAvatar:^(UIImage *image, NSError *error) {
         
@@ -86,10 +89,17 @@
         });
         
         
-    }];
+    } forNetwork:network];
     
 }
 - (IBAction)downloadCover:(id)sender {
+    
+    JNSocialDownloadNetwork network = JNSocialDownloadNetworkFacebook;
+    
+    if (self.socialNetwork.selectedSegmentIndex == 1)
+    {
+        network = JNSocialDownloadNetworkTwitter;
+    }
     
     [self.SocialDownload downloadCover:^(UIImage *image, NSError *error) {
         
@@ -114,7 +124,7 @@
         });
         
         
-    }];
+    } forNetwork:network];
 }
 
 @end
