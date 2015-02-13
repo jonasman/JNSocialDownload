@@ -1,0 +1,439 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CFF779D21A82785600F682BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF779D11A82785600F682BA /* AppDelegate.swift */; };
+		CFF779D41A82785600F682BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF779D31A82785600F682BA /* ViewController.swift */; };
+		CFF779D71A82785600F682BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF779D51A82785600F682BA /* Main.storyboard */; };
+		CFF779D91A82785600F682BA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFF779D81A82785600F682BA /* Images.xcassets */; };
+		CFF779DC1A82785600F682BA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFF779DA1A82785600F682BA /* LaunchScreen.xib */; };
+		CFF779E81A82785600F682BA /* JNSocialDownloadDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF779E71A82785600F682BA /* JNSocialDownloadDemoTests.swift */; };
+		CFF779FA1A827CAD00F682BA /* JNSocialDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF779F91A827CAD00F682BA /* JNSocialDownload.swift */; };
+		CFF779FC1A82809400F682BA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFF779FB1A82809400F682BA /* Social.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CFF779E21A82785600F682BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CFF779C41A82785600F682BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CFF779CB1A82785600F682BA;
+			remoteInfo = JNSocialDownloadDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CFF779CC1A82785600F682BA /* JNSocialDownloadDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JNSocialDownloadDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFF779D01A82785600F682BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFF779D11A82785600F682BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CFF779D31A82785600F682BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CFF779D61A82785600F682BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CFF779D81A82785600F682BA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CFF779DB1A82785600F682BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		CFF779E11A82785600F682BA /* JNSocialDownloadDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JNSocialDownloadDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFF779E61A82785600F682BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFF779E71A82785600F682BA /* JNSocialDownloadDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JNSocialDownloadDemoTests.swift; sourceTree = "<group>"; };
+		CFF779F91A827CAD00F682BA /* JNSocialDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JNSocialDownload.swift; sourceTree = "<group>"; };
+		CFF779FB1A82809400F682BA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CFF779C91A82785600F682BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFF779FC1A82809400F682BA /* Social.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFF779DE1A82785600F682BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CFF779C31A82785600F682BA = {
+			isa = PBXGroup;
+			children = (
+				CFF779FB1A82809400F682BA /* Social.framework */,
+				CFF779CE1A82785600F682BA /* JNSocialDownloadDemo */,
+				CFF779E41A82785600F682BA /* JNSocialDownloadDemoTests */,
+				CFF779CD1A82785600F682BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CFF779CD1A82785600F682BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CFF779CC1A82785600F682BA /* JNSocialDownloadDemo.app */,
+				CFF779E11A82785600F682BA /* JNSocialDownloadDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CFF779CE1A82785600F682BA /* JNSocialDownloadDemo */ = {
+			isa = PBXGroup;
+			children = (
+				CFF779F81A827CAD00F682BA /* JNSocialDownload-Swift */,
+				CFF779D11A82785600F682BA /* AppDelegate.swift */,
+				CFF779D31A82785600F682BA /* ViewController.swift */,
+				CFF779D51A82785600F682BA /* Main.storyboard */,
+				CFF779D81A82785600F682BA /* Images.xcassets */,
+				CFF779DA1A82785600F682BA /* LaunchScreen.xib */,
+				CFF779CF1A82785600F682BA /* Supporting Files */,
+			);
+			path = JNSocialDownloadDemo;
+			sourceTree = "<group>";
+		};
+		CFF779CF1A82785600F682BA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFF779D01A82785600F682BA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFF779E41A82785600F682BA /* JNSocialDownloadDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				CFF779E71A82785600F682BA /* JNSocialDownloadDemoTests.swift */,
+				CFF779E51A82785600F682BA /* Supporting Files */,
+			);
+			path = JNSocialDownloadDemoTests;
+			sourceTree = "<group>";
+		};
+		CFF779E51A82785600F682BA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFF779E61A82785600F682BA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFF779F81A827CAD00F682BA /* JNSocialDownload-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				CFF779F91A827CAD00F682BA /* JNSocialDownload.swift */,
+			);
+			name = "JNSocialDownload-Swift";
+			path = "../../JNSocialDownload-Swift";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CFF779CB1A82785600F682BA /* JNSocialDownloadDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFF779EB1A82785600F682BA /* Build configuration list for PBXNativeTarget "JNSocialDownloadDemo" */;
+			buildPhases = (
+				CFF779C81A82785600F682BA /* Sources */,
+				CFF779C91A82785600F682BA /* Frameworks */,
+				CFF779CA1A82785600F682BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JNSocialDownloadDemo;
+			productName = JNSocialDownloadDemo;
+			productReference = CFF779CC1A82785600F682BA /* JNSocialDownloadDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CFF779E01A82785600F682BA /* JNSocialDownloadDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CFF779EE1A82785600F682BA /* Build configuration list for PBXNativeTarget "JNSocialDownloadDemoTests" */;
+			buildPhases = (
+				CFF779DD1A82785600F682BA /* Sources */,
+				CFF779DE1A82785600F682BA /* Frameworks */,
+				CFF779DF1A82785600F682BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CFF779E31A82785600F682BA /* PBXTargetDependency */,
+			);
+			name = JNSocialDownloadDemoTests;
+			productName = JNSocialDownloadDemoTests;
+			productReference = CFF779E11A82785600F682BA /* JNSocialDownloadDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CFF779C41A82785600F682BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = joao;
+				TargetAttributes = {
+					CFF779CB1A82785600F682BA = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					CFF779E01A82785600F682BA = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = CFF779CB1A82785600F682BA;
+					};
+				};
+			};
+			buildConfigurationList = CFF779C71A82785600F682BA /* Build configuration list for PBXProject "JNSocialDownloadDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CFF779C31A82785600F682BA;
+			productRefGroup = CFF779CD1A82785600F682BA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CFF779CB1A82785600F682BA /* JNSocialDownloadDemo */,
+				CFF779E01A82785600F682BA /* JNSocialDownloadDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CFF779CA1A82785600F682BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFF779D71A82785600F682BA /* Main.storyboard in Resources */,
+				CFF779DC1A82785600F682BA /* LaunchScreen.xib in Resources */,
+				CFF779D91A82785600F682BA /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFF779DF1A82785600F682BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CFF779C81A82785600F682BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFF779FA1A827CAD00F682BA /* JNSocialDownload.swift in Sources */,
+				CFF779D41A82785600F682BA /* ViewController.swift in Sources */,
+				CFF779D21A82785600F682BA /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFF779DD1A82785600F682BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFF779E81A82785600F682BA /* JNSocialDownloadDemoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CFF779E31A82785600F682BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CFF779CB1A82785600F682BA /* JNSocialDownloadDemo */;
+			targetProxy = CFF779E21A82785600F682BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CFF779D51A82785600F682BA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFF779D61A82785600F682BA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CFF779DA1A82785600F682BA /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CFF779DB1A82785600F682BA /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CFF779E91A82785600F682BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CFF779EA1A82785600F682BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CFF779EC1A82785600F682BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = JNSocialDownloadDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CFF779ED1A82785600F682BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = JNSocialDownloadDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		CFF779EF1A82785600F682BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = JNSocialDownloadDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JNSocialDownloadDemo.app/JNSocialDownloadDemo";
+			};
+			name = Debug;
+		};
+		CFF779F01A82785600F682BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = JNSocialDownloadDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JNSocialDownloadDemo.app/JNSocialDownloadDemo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CFF779C71A82785600F682BA /* Build configuration list for PBXProject "JNSocialDownloadDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFF779E91A82785600F682BA /* Debug */,
+				CFF779EA1A82785600F682BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFF779EB1A82785600F682BA /* Build configuration list for PBXNativeTarget "JNSocialDownloadDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFF779EC1A82785600F682BA /* Debug */,
+				CFF779ED1A82785600F682BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CFF779EE1A82785600F682BA /* Build configuration list for PBXNativeTarget "JNSocialDownloadDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CFF779EF1A82785600F682BA /* Debug */,
+				CFF779F01A82785600F682BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CFF779C41A82785600F682BA /* Project object */;
+}
