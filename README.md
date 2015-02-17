@@ -16,7 +16,7 @@ Getting Started
 Facebook APP ID
 ============
 To use the native iOS facebook integration you need to create a facebok app id. 
-the app id can be created here: https://developers.facebook.com , select "new app" and an ID will be created.
+The app id can be created here: https://developers.facebook.com , select "new app" and an ID will be created.
 
 
 
