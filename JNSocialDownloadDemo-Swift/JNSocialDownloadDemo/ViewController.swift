@@ -50,8 +50,9 @@ class ViewController: UIViewController {
         }
         
         
-        self.socialDownload.downloadInformation({ (userInfo, error) -> () in
-            
+        self.socialDownload.downloadInformation(ForNetwork: network, completionHandler: { (userInfo, error) -> () in
+			
+			
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
@@ -76,9 +77,9 @@ class ViewController: UIViewController {
                 }
                 
             })
-            
-            }, network: network)
-        
+			
+		})
+		
         
         
     }
@@ -90,7 +91,8 @@ class ViewController: UIViewController {
             network = .Twitter
         }
         
-        self.socialDownload.downloadAvatar({ (image, error) -> () in
+        self.socialDownload.downloadAvatar(ForNetwork: network, completionHandler: { (image, error) -> () in
+			
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
                 if let error_ = error
@@ -115,8 +117,7 @@ class ViewController: UIViewController {
                 
             })
 
-        }, network: network)
-        
+		})
     }
     @IBAction func downloadCover(sender: UIButton) {
         
@@ -127,7 +128,8 @@ class ViewController: UIViewController {
             network = .Twitter
         }
         
-        self.socialDownload.downloadCover({ (image, error) -> () in
+        self.socialDownload.downloadCover(ForNetwork: network, completionHandler: { (image, error) -> () in
+			
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
                 if let error_ = error
@@ -152,7 +154,7 @@ class ViewController: UIViewController {
                 
             })
             
-            }, network: network)
+            })
     }
 }
 

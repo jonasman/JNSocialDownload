@@ -56,7 +56,7 @@ private class RequestConfiguration
 }
 
 
-class JNSocialDownload: NSObject {
+public class JNSocialDownload: NSObject {
    
     
     var appID:NSString?
@@ -77,20 +77,20 @@ class JNSocialDownload: NSObject {
     
     
     
-    func downloadInformation(completionHandler: SocialDownloadInformationClosure, network:JNSocialDownloadNetwork) -> Void
+    func downloadInformation(ForNetwork network:JNSocialDownloadNetwork, completionHandler: SocialDownloadInformationClosure) -> Void
     {
         let request = RequestConfiguration(infoClosure: completionHandler,network: network)
         
         self.selectSocialIOS(.Information, request: request)
     }
-    func downloadAvatar(completionHandler: SocialDownloadImageClosure, network:JNSocialDownloadNetwork) -> Void
+    func downloadAvatar(ForNetwork network:JNSocialDownloadNetwork, completionHandler: SocialDownloadImageClosure) -> Void
     {
         let request = RequestConfiguration(imageClosure: completionHandler,network: network)
         
         self.selectSocialIOS(.Avatar, request: request)
     }
     
-    func downloadCover(completionHandler: SocialDownloadImageClosure, network:JNSocialDownloadNetwork) -> Void
+    func downloadCover(ForNetwork network:JNSocialDownloadNetwork, completionHandler: SocialDownloadImageClosure) -> Void
     {
         let request = RequestConfiguration(imageClosure: completionHandler,network: network)
         
