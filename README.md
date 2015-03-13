@@ -1,7 +1,7 @@
 JNSocialDownload
 ======================
 
-A Dead simple Facebook and Twitter data downloader
+A Dead simple Facebook and Twitter avatar and cover downloader
 
 
 Getting Started
