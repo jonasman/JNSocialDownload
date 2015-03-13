@@ -4,13 +4,22 @@ JNSocialDownload
 A Dead simple Facebook and Twitter avatar and cover downloader
 
 
-Getting Started
+#Getting Started
+##Objc-c
 ============
 
 1. Copy JNSocialDownload class into your project.
 2. `socialDownload = [[JNSocialDownload alloc] init];`
 3. `socialDownload.appID = YOUR_FACEBOOK_APP_ID` . If you have used FacebookSDK and you set the app id in the info.plist then this library is also able to get it from there
-4. Download some data with `- (void)downloadAvatar:(SocialDownloadImageBlock)completion forNetwork:(JNSocialDownloadNetwork)network;` 
+4. Download some data with `- (void)downloadAvatarForNetwork:(JNSocialDownloadNetwork)network completionHandler:(SocialDownloadImageBlock)completion ;` 
+
+
+##Swift
+============
+1. Copy JNSocialDownload class into your project.
+2. `var socialDownload = JNSocialDownload()`
+3. `socialDownload.appID = YOUR_FACEBOOK_APP_ID` . If you have used FacebookSDK and you set the app id in the info.plist then this library is also able to get it from there
+4. Download some data with `func downloadAvatar(ForNetwork network:JNSocialDownloadNetwork, completionHandler: SocialDownloadImageClosure) -> Void` 
 
 
 Facebook APP ID
