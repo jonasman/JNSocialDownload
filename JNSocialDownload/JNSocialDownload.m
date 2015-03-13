@@ -124,21 +124,21 @@ const NSInteger JNSocialDownloadNoAccount = 3;
 
 #pragma mark - Public API
 
-- (void)downloadAvatar:(SocialDownloadImageBlock)completion forNetwork:(JNSocialDownloadNetwork)network
+- (void)downloadAvatarForNetwork:(JNSocialDownloadNetwork)network completionHandler:(SocialDownloadImageBlock)completion
 {
     
     RequestConfiguration * request = [RequestConfiguration requestConfigurationWithImageBlock:completion andNetwork:network];
     
     [self selectSocialIOS:SocialDownloadTypeAvatar request:request];
 }
-- (void)downloadCover:(SocialDownloadImageBlock)completion forNetwork:(JNSocialDownloadNetwork)network
+- (void)downloadCoverForNetwork:(JNSocialDownloadNetwork)network completionHandler:(SocialDownloadImageBlock)completion
 {
     
     RequestConfiguration * request = [RequestConfiguration requestConfigurationWithImageBlock:completion andNetwork:network];
     
     [self selectSocialIOS:SocialDownloadTypeCover request:request];
 }
-- (void)downloadInformation:(SocialDownloadUserInfoBlock)completion forNetwork:(JNSocialDownloadNetwork)network
+- (void)downloadInformationForNetwork:(JNSocialDownloadNetwork)network completionHandler:(SocialDownloadUserInfoBlock)completion
 {
     
     RequestConfiguration * request = [RequestConfiguration requestConfigurationWithInfoBlock:completion andNetwork:network];

@@ -39,8 +39,8 @@
         network = JNSocialDownloadNetworkTwitter;
     }
     
-    [self.SocialDownload downloadInformation:^(NSDictionary *userInfo, NSError *error) {
-        
+    [self.SocialDownload downloadInformationForNetwork:network completionHandler:^(NSDictionary *userInfo, NSError *error) {
+		
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (error)
@@ -58,7 +58,7 @@
             }
         });
         
-    } forNetwork:network];
+    }];
 }
 - (IBAction)downloadAvatar:(id)sender {
     
@@ -69,8 +69,8 @@
         network = JNSocialDownloadNetworkTwitter;
     }
     
-    [self.SocialDownload downloadAvatar:^(UIImage *image, NSError *error) {
-        
+    [self.SocialDownload downloadAvatarForNetwork:network completionHandler:^(UIImage *image, NSError *error) {
+		
         dispatch_async(dispatch_get_main_queue(), ^{
             
             if (error)
@@ -89,7 +89,7 @@
         });
         
         
-    } forNetwork:network];
+    }];
     
 }
 - (IBAction)downloadCover:(id)sender {
@@ -101,8 +101,7 @@
         network = JNSocialDownloadNetworkTwitter;
     }
     
-    [self.SocialDownload downloadCover:^(UIImage *image, NSError *error) {
-        
+    [self.SocialDownload downloadCoverForNetwork:network completionHandler:^(UIImage *image, NSError *error) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -124,7 +123,7 @@
         });
         
         
-    } forNetwork:network];
+    }];
 }
 
 @end

@@ -37,9 +37,9 @@ const NSInteger JNSocialDownloadNoAccount;
 
 
 
-- (void)downloadAvatar:(SocialDownloadImageBlock)completion forNetwork:(JNSocialDownloadNetwork)network;
-- (void)downloadCover:(SocialDownloadImageBlock)completion forNetwork:(JNSocialDownloadNetwork)network;
-- (void)downloadInformation:(SocialDownloadUserInfoBlock)completion forNetwork:(JNSocialDownloadNetwork)network;
+- (void)downloadAvatarForNetwork:(JNSocialDownloadNetwork)network completionHandler:(SocialDownloadImageBlock)completion;
+- (void)downloadCoverForNetwork:(JNSocialDownloadNetwork)network completionHandler:(SocialDownloadImageBlock)completion;
+- (void)downloadInformationForNetwork:(JNSocialDownloadNetwork)network completionHandler:(SocialDownloadUserInfoBlock)completion;
 
 
 @end
